@@ -1,0 +1,56 @@
+nav {
+
+    height: 9.5vh;
+    background-color: rgb(255, 255, 255);
+
+}
+
+.navbar-nav a {
+
+    font-size: x-large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+}
+
+#ilk3 {
+
+    margin-right: 8vh;
+}
+
+#logo {
+    margin-left:25vh ;
+    margin-right: 45vh;
+}
+
+#son3 {
+    margin-right: 13vh;
+}
+
+@media (max-width: 991.98px) {
+    #logo {
+      display: none;
+    }
+  }
+  
+  .navbar-toggler {
+    background-color: grey;
+    border-color: transparent;
+  }
+  
+  
+
+  
+  
+  .custom-collapse{
+    
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #f8f9fa; /* Açılan menünün arka plan rengi */
+    padding: 15px; /* İstenilen iç içe döküman stilini belirleyin */
+  }
+
+  .navbar-placeholder {
+    height: 80px; /* Navbar yüksekliği */
+  }
