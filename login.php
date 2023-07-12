@@ -2,32 +2,20 @@
 
 include("baglanti.php"); 
 
-$username_err = "";
+
 $email_err = "";
 $parola_err="";
-$parolatekrar_err="";
-$isim_err="";
-$soyisim_err ="";
 
-if(isset($_POST["kaydet"])){
+
+if(isset($_POST["giris"])){
     //KULLANICI DOĞRULAMA
-    if(empty($_POST["isim"])){ 
-        $isim_err = "İsim boş olamaz!";
-    }else if (!preg_match("/^([a-zA-Z' ]+)$/", $_POST["isim"])) {
-        $isim_err ="İsminizde özel karakter bulunamaz!";
-    }else {
-        $isim = $_POST["isim"];
-    }
+    
 
-    if(empty($_POST["soyisim"])){ 
-        $soyisim_err = "Soyisim boş olamaz!";
-    }else {
-        $soyisim = $_POST["soyisim"];
-    }
+    
 
     if(empty($_POST["email"])){
 
-        $email_err = "Email adresi boş olamaz!";
+        $email_err = "Email adresi giriniz!";
 
     }else if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
 
@@ -38,47 +26,40 @@ if(isset($_POST["kaydet"])){
 
 
       if(empty($_POST["parola"])){
-        $parola_err = "Parola boş olamaz!";
+        $parola_err = "Parola giriniz!";
       }else {
-        $parola = password_hash($_POST["parola"],PASSWORD_DEFAULT) ;
+        $parola =$_POST["parola"] ;
       }
-    
-    //parola tekrar
-    if(empty($_POST["parolatekrar"])){
-
-        $parolatekrar_err ="Parola tekrar boş olamaz!";
-
-    }elseif($_POST["parola"]!= $_POST["parolatekrar"]) {
-
-        $parolatekrar_err = "Parolalar eşleşmiyor!";
-    }else {
-        $parolatekrar = $_POST["parolatekrar"];
-    }
-
-
+ 
     
 
-    
+    if(isset($email)&&isset($parola)){
 
-    if(isset($isim)&&isset($soyisim)&&isset($email)&&isset($parola)){
-
-    
+        $secim = "SELECT * FROM kullanicilar WHERE email= '$email'";
+        $calistir = mysqli_query($baglanti,$secim);
+        $kayitsayisi = mysqli_num_rows($calistir);
         
-        $ekle = "INSERT INTO kullanicilar (isim, soyisim, email, parola) VALUES ('$isim','$soyisim', '$email', '$parola')";
-        $calistirekle = mysqli_query($baglanti,$ekle);
-        
-        if($calistirekle){
-            echo '<div class="alert alert-success" role="alert">
-            Kayıt başarılı!
+        if($kayitsayisi>0){
+
+            $ilgilikayit = mysqli_fetch_assoc($calistir);
+            $hashlisifre = $ilgilikayit["parola"];
+
+            if(password_verify($parola,$hashlisifre)){
+                session_start();
+                $_SESSION["email"] = $ilgilikayit["email"];
+                
+                header("location: profile.php");
+            }else {
+                echo '<div class="alert alert-danger" role="danger">
+            Email veya parola yanlış!
             </div> ';
-        } else { //Kayıt başarılı değilse
+            }
+
+        }else {
             echo '<div class="alert alert-danger" role="alert">
-            Kayıt sırasında bir hata oluştu.
+            Email veya parola yanlış!
             </div> ';
         }
-        
-        mysqli_close($baglanti);
-    
     
     }
     
@@ -92,7 +73,7 @@ if(isset($_POST["kaydet"])){
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>PT - Giriş</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
@@ -103,7 +84,7 @@ if(isset($_POST["kaydet"])){
   
    <div class="container p-4 w-100">
     <div class="card p-5">
-    <form action="kayit.php" method="POST">
+    <form action="login.php" method="POST">
         
 
     <h2 class="text-center">Giriş Yap</h2>
@@ -146,7 +127,7 @@ if(isset($_POST["kaydet"])){
 
   
   
-  <button type="submit" class="btn btn-primary" name="kaydet">Giriş Yap</button>
+  <button type="submit" class="btn btn-primary" name="giris">Giriş Yap</button>
 </form>
     </div>
    </div>

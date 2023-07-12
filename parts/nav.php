@@ -12,13 +12,16 @@
         </div>
 
         <div class="navbar-nav" id="logo">
-            <a class="nav-link text-dark">Logo</a>
+            <a href="index.php" class="nav-link text-dark">Logo</a>
         </div>
         
         <div class="navbar-nav" id="son3">
             <a class="nav-link text-dark mx-5" href="#">Destek</a>
             <a class="nav-link text-dark mx-5" href="#">Fiyatlar</a>
+            <a href="login.php">
             <button type="button" class="btn btn-primary rounded-5 mx-5"><strong>Login</strong></button>
+            </a>
+            
         </div>
             
           </div>
