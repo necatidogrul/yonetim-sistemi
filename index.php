@@ -32,6 +32,7 @@
 
         
       </div>
+      
       <div class="col-sm-12 mt-3 mt-sm-1 ms-5" style="width: 280px;display: inline-block; ">
         
         <input type="email" class="form-control bg-dark" id="exampleFormControlInput1" placeholder="Mail Adresi" style="height: 50px;color: white;">
@@ -41,7 +42,7 @@
 
       <div class="col-sm-12 mt-3 ms-5" style="width: 280px;display: inline-block; ">
       <a href="kayit.php">
-        <button type="button text-dark" class="btn btn-warning" style="height: 50px; width: 160px;"><strong>Ücretsiz Dene</strong></button>
+        <button type="button text-dark" class="btn btn-warning " style="height: 50px; width: 160px;"><strong>Ücretsiz Dene</strong></button>
       </a>
         
       </div>
@@ -56,7 +57,7 @@
     </div>
     <div style="display: block;" class="col-sm-12 col-md-8 col-lg-8">
         <div class="container-fluid">
-            <h1 style="color: rgb(92, 91, 91); " class="mt-1">NEDİR VE NE İŞE YARAR?</h1>
+            <h1 style="color: rgb(92, 91, 91); " class="mt-3">NEDİR VE NE İŞE YARAR?</h1>
             <h3 style="color: rgb(151, 151, 151);" class="mt-3">Yeni Nesil Asistan</h3>
             <h5 class="mt-4">Salonunuzu aktif ve anlık olarak yönetmenize yarayan, bulut tabanlı,<br>
             yeni nesil takip ve yönetim yazılımdır.

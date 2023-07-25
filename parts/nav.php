@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top w-100">
+<nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,7 @@
             <a class="nav-link text-dark mx-5" href="#">Destek</a>
             <a class="nav-link text-dark mx-5" href="#">Fiyatlar</a>
             <a href="login.php">
-            <button type="button" class="btn btn-primary rounded-5 mx-5"><strong>Login</strong></button>
+            <button type="button" class="btn btn-primary rounded-5 mx-5 mt-2"><strong>Login</strong></button>
             </a>
             
         </div>

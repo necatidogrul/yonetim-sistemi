@@ -92,7 +92,10 @@ if(isset($_POST["giris"])){
     
 
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email Adresi</label>
+
+
+  
+    <label for="exampleInputEmail1" class="form-label">E-posta adresi</label>
     <input type="text" class="form-control 
     
     <?php
@@ -109,7 +112,7 @@ if(isset($_POST["giris"])){
     
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Parola</label>
+    <label for="exampleInputPassword1" class="form-label">Şifre</label>
     <input type="password" class="form-control 
     
     <?php
@@ -127,8 +130,13 @@ if(isset($_POST["giris"])){
 
   
   
-  <button type="submit" class="btn btn-primary" name="giris">Giriş Yap</button>
+  <button type="submit" class="btn btn-primary" name="giris">Giriş yap</button>
 </form>
+<div class="mt-3">
+    <h5 >Hesabın yok mu? <span><a style="text-decoration:none" href="kayit.php">Kaydol</a></span> </h5> 
+</div>
+    
+    
     </div>
    </div>
 

@@ -13,8 +13,6 @@ if(isset($_POST["kaydet"])){
     //KULLANICI DOĞRULAMA
     if(empty($_POST["isim"])){ 
         $isim_err = "İsim boş olamaz!";
-    }else if (!preg_match("/^([a-zA-Z' ]+)$/", $_POST["isim"])) {
-        $isim_err ="İsminizde özel karakter bulunamaz!";
     }else {
         $isim = $_POST["isim"];
     }
@@ -60,27 +58,36 @@ if(isset($_POST["kaydet"])){
 
     
 
-    if(isset($isim)&&isset($soyisim)&&isset($email)&&isset($parola)){
-
-    
-        
-        $ekle = "INSERT INTO kullanicilar (isim, soyisim, email, parola) VALUES ('$isim','$soyisim', '$email', '$parola')";
-        $calistirekle = mysqli_query($baglanti,$ekle);
-        
-        if($calistirekle){
-            echo '<div class="alert alert-success" role="alert">
-            Kayıt başarılı!
-            </div> ';
-        } else { //Kayıt başarılı değilse
-            echo '<div class="alert alert-danger" role="alert">
-            Kayıt sırasında bir hata oluştu.
-            </div> ';
-        }
-        
-        mysqli_close($baglanti);
-    
-    
-    }
+    if (isset($isim) && isset($soyisim) && isset($email) && isset($parola)) {
+      // E-posta adresinin veritabanında daha önce kaydedilip kaydedilmediğini kontrol et
+      $checkQuery = "SELECT * FROM kullanicilar WHERE email = '$email'";
+      $checkResult = mysqli_query($baglanti, $checkQuery);
+  
+      if (mysqli_num_rows($checkResult) > 0) {
+          // E-posta adresi zaten kayıtlı ise hata mesajı göster
+          echo '<div class="alert alert-danger" role="alert">
+                  Bu e-posta adresiyle zaten bir hesap bulunmaktadır.
+              </div>';
+      } else {
+          // E-posta adresi kayıtlı değilse yeni kullanıcıyı veritabanına ekle
+          $resetToken = bin2hex(random_bytes(16));
+          $ekle = "INSERT INTO kullanicilar (isim, soyisim, email, parola, reset_token) VALUES ('$isim','$soyisim', '$email', '$parola','$resetToken')";
+          $calistirekle = mysqli_query($baglanti, $ekle);
+  
+          if ($calistirekle) {
+              echo '<div class="alert alert-success" role="alert">
+                      Kayıt başarılı!
+                  </div>';
+          } else {
+              // Kayıt başarılı değilse
+              echo '<div class="alert alert-danger" role="alert">
+                      Kayıt sırasında bir hata oluştu.
+                  </div>';
+          }
+      }
+  
+      mysqli_close($baglanti);
+  }
     
 }
 
@@ -198,6 +205,7 @@ if(isset($_POST["kaydet"])){
   
   <button type="submit" class="btn btn-primary" name="kaydet">Kaydol</button>
 </form>
+            
     </div>
    </div>
 
