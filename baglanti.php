@@ -8,8 +8,4 @@ $vt="uyelik";
 
 $baglanti = mysqli_connect($host, $kullanici,$parola,$vt);
 
-
-
-
-
-?>
+echo "test";
